@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ConsoleTables;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -30,16 +31,19 @@ namespace ConsoleBookApp
             SqlCommand cmd;
             SqlDataReader dreader;
             string sql, output = "";
-            sql = "Select BookTitle, BookAuthor, Genre, PublicationYear from BookTable";
+            sql = "Select ID, BookTitle, BookAuthor, Genre, PublicationYear from BookTable";
             cmd = new SqlCommand(sql, connection);
             dreader = cmd.ExecuteReader();
+
+            var table = new ConsoleTable("ID", "Title", "Author", "Genre", "Publication Year");
             while (dreader.Read())
             {
-                output = output + dreader.GetValue(0) + " - " +
-                    dreader.GetValue(1) + " - " + dreader.GetValue(2) + " - " + dreader.GetValue(3) + "\n";
+                table.AddRow(dreader.GetValue(0), dreader.GetValue(1), dreader.GetValue(2), dreader.GetValue(3), dreader.GetValue(4));  
             }
 
-            Console.Write(output);
+            table.Write();
+            Console.WriteLine();
+
             dreader.Close();
             cmd.Dispose();
             connection.Close();

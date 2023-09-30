@@ -1,5 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
+using Alba.CsConsoleFormat;
 using System.Data.SqlClient;
 using System.Reflection.PortableExecutable;
 
@@ -9,7 +10,7 @@ mainMenu();
 void mainMenu()
 {
     Console.Clear();
-    Console.WriteLine("------------------Library---------------------");
+    Console.WriteLine("------------------Welcome to the Library---------------------");
     Console.WriteLine("          .--.                   .---.     ");
     Console.WriteLine("      .---|__|           .-.     |~~~|     ");
     Console.WriteLine("   .--|===|--|_          |_|     |~~~|--.  ");
